@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { jsonRes } from "@/service/response";
 import { SignatureVerification } from "@/service/signatureVerification";
 import axios from "axios";
 
@@ -41,11 +40,11 @@ export default async function handler(
       username = emailRes.data[0].email;
     }
 
-    jsonRes(res, { data: username });
+    res.json({data: username})
   } catch (err) {
-    jsonRes(res, {
-      code: 500,
-      error: err,
+    res.status(500).json({
+        code:500,
+        message:String(err)
     });
   }
 }
