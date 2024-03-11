@@ -36,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
       jsonRes(res,{data: username});
     } catch (err) {
-        res.json({name:String(err)});
+        res.status(500).json({name:String(err)});
     //   jsonRes(res, {
     //     code: 500,
     //     error: err
