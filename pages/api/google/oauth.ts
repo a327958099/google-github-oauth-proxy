@@ -12,6 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         if (!callbackUrl || !code || !sign) {
             throw new Error('Signature verification failed');
         }
+        throw new Error('Signature verification failed999');
         await SignatureVerification(code,sign);
 
         const oauth2Client = new OAuth2Client(
@@ -35,10 +36,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
       jsonRes(res,{data: username});
     } catch (err) {
-      jsonRes(res, {
-        code: 500,
-        error: err
-      });
+        res.json({name:err});
+    //   jsonRes(res, {
+    //     code: 500,
+    //     error: err
+    //   });
     }
   }
   
