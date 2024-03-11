@@ -13,7 +13,8 @@ export default async function handler(
     if (!code || !sign) {
       throw new Error("Signature verification failed");
     }
-
+    jsonRes(res, { data: 'username' });
+    throw new Error("Signature verification failed");
     await SignatureVerification(code, sign);
 
     let username = "";
